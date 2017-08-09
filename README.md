@@ -1,37 +1,51 @@
-# Caffe
+# Dynamic Precision Control
 
-[![Build Status](https://travis-ci.org/BVLC/caffe.svg?branch=master)](https://travis-ci.org/BVLC/caffe)
-[![License](https://img.shields.io/badge/license-BSD-blue.svg)](LICENSE)
+This repository is created to reproduce the results from the paper:
 
-Caffe is a deep learning framework made with expression, speed, and modularity in mind.
-It is developed by the Berkeley Vision and Learning Center ([BVLC](http://bvlc.eecs.berkeley.edu)) and community contributors.
+“Speeding up Convolutional Neural Network Training with Dynamic Precision Scaling and Flexible Multiplier-Accumulator”
+Taesik Na and Saibal Mukhopadhyay
+International Symposium on Low Power Electronics and Design (ISLPED), Aug 2016
 
-Check out the [project site](http://caffe.berkeleyvision.org) for all the details like
+Please cite DPS in your publications if it helps your research.
 
-- [DIY Deep Learning for Vision with Caffe](https://docs.google.com/presentation/d/1UeKXVgRvvxg9OUdh_UiC5G71UMscNPlvArsWER41PsU/edit#slide=id.p)
-- [Tutorial Documentation](http://caffe.berkeleyvision.org/tutorial/)
-- [BVLC reference models](http://caffe.berkeleyvision.org/model_zoo.html) and the [community model zoo](https://github.com/BVLC/caffe/wiki/Model-Zoo)
-- [Installation instructions](http://caffe.berkeleyvision.org/installation.html)
+## Getting Started
 
-and step-by-step examples.
+These instructions will get you a copy of the project up and running on your local machine
 
-[![Join the chat at https://gitter.im/BVLC/caffe](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BVLC/caffe?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+### Prerequisites
 
-Please join the [caffe-users group](https://groups.google.com/forum/#!forum/caffe-users) or [gitter chat](https://gitter.im/BVLC/caffe) to ask questions and talk about methods and models.
-Framework development discussions and thorough bug reports are collected on [Issues](https://github.com/BVLC/caffe/issues).
+What things you need to install the software and how to install them
 
-Happy brewing!
+```
+Give examples
+```
 
-## License and Citation
+### Installing
 
-Caffe is released under the [BSD 2-Clause license](https://github.com/BVLC/caffe/blob/master/LICENSE).
-The BVLC reference models are released for unrestricted use.
+Please follow the general guideline to install caffe and pycaffe on you local machine.
+* [Caffe](https://github.com/BVLC/caffe) - The original Caffe repository
 
-Please cite Caffe in your publications if it helps your research:
 
-    @article{jia2014caffe,
-      Author = {Jia, Yangqing and Shelhamer, Evan and Donahue, Jeff and Karayev, Sergey and Long, Jonathan and Girshick, Ross and Guadarrama, Sergio and Darrell, Trevor},
-      Journal = {arXiv preprint arXiv:1408.5093},
-      Title = {Caffe: Convolutional Architecture for Fast Feature Embedding},
-      Year = {2014}
-    }
+### Running
+
+After you install pycaffe,
+
+```
+cd $CAFFE_ROOT/work/dps/lenet/dynamic_16_32
+python learning_fixed_lenet.py
+```
+
+This will reproduce the figure 4(b) in our paper.
+
+## Knobs to control DPS
+
+Please feel free to change fixed_lenet_auto_solver.prototxt file to control DPS algorithm.
+
+save_loss: 1 for save loss, total_bit_width for debugging purpose.
+save_loss_prefix: prefix for the saved loss file.
+average_loss: moving average window
+target_length: initial target bit width (excluding sign bit)
+max_length: maximum allowable bit width (excluding sign bit)
+bit_step: unit bit step for DPS
+
+Enjoy!

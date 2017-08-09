@@ -32,8 +32,6 @@ save_loss: 1
 save_loss_prefix: "fixed_lenet"
 # DPS parameters
 average_loss: 100
-isearch_window: 10
-dsearch_window: 50
 target_length: 15
 bit_step: 16
 max_length: 31
