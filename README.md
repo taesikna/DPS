@@ -1,24 +1,13 @@
 # Dynamic Precision Control
 
-This repository is created to reproduce the results from the paper:
+This repository is created to reproduce the results in the paper:
 
-“Speeding up Convolutional Neural Network Training with Dynamic Precision Scaling and Flexible Multiplier-Accumulator”
-Taesik Na and Saibal Mukhopadhyay
+“Speeding up Convolutional Neural Network Training with Dynamic Precision Scaling and Flexible Multiplier-Accumulator,”
+Taesik Na and Saibal Mukhopadhyay,
 International Symposium on Low Power Electronics and Design (ISLPED), Aug 2016
 
-Please cite DPS in your publications if it helps your research.
+Please cite our paper in your publications if it helps your research.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
 
 ### Installing
 
@@ -41,11 +30,13 @@ This will reproduce the figure 4(b) in our paper.
 
 Please feel free to change fixed_lenet_auto_solver.prototxt file to control DPS algorithm.
 
+```
 save_loss: 1 for save loss, total_bit_width for debugging purpose.
 save_loss_prefix: prefix for the saved loss file.
 average_loss: moving average window
 target_length: initial target bit width (excluding sign bit)
 max_length: maximum allowable bit width (excluding sign bit)
 bit_step: unit bit step for DPS
+```
 
 Enjoy!
