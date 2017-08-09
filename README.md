@@ -31,9 +31,9 @@ This will reproduce the figure 4(b) in our paper.
 Please feel free to change fixed_lenet_auto_solver.prototxt file to control DPS algorithm.
 
 ```
-save_loss: 1 for save loss, total_bit_width for debugging purpose.
-save_loss_prefix: prefix for the saved loss file.
-average_loss: moving average window
+save_loss: 1 for saving loss, smoothed loss and total_bit_width for debugging purpose.
+save_loss_prefix: prefix for the file to be saved.
+average_loss: moving average window for smoothed loss
 target_length: initial target bit width (excluding sign bit)
 max_length: maximum allowable bit width (excluding sign bit)
 bit_step: unit bit step for DPS
