@@ -17,7 +17,16 @@ Please follow the general guideline to install caffe and pycaffe on you local ma
 
 ### Running
 
-After you install pycaffe,
+After you install pycaffe, download mnist data set.
+
+```
+cd $CAFFE_ROOT/data/mnist
+./get_mnist.sh
+cd $CAFFE_ROOT/examples/mnist
+./create_mnist.sh
+```
+
+And then,
 
 ```
 cd $CAFFE_ROOT/work/dps/lenet/dynamic_16_32
