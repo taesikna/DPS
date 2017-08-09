@@ -2,8 +2,7 @@
 
 This repository is created to reproduce the results in the paper:
 
-“[Speeding up Convolutional Neural Network Training with Dynamic Precision Scaling and Flexible Multiplier-Accumulator]
-(http://dl.acm.org/citation.cfm?id=2934625),”
+“[Speeding up Convolutional Neural Network Training with Dynamic Precision Scaling and Flexible Multiplier-Accumulator](http://dl.acm.org/citation.cfm?id=2934625),”
 Taesik Na and Saibal Mukhopadhyay,
 International Symposium on Low Power Electronics and Design (ISLPED), Aug 2016
 
