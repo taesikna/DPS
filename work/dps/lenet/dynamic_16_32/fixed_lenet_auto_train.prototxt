@@ -1,0 +1,171 @@
+layer {
+  name: "data"
+  type: "Data"
+  top: "data"
+  top: "label"
+  transform_param {
+    scale: 0.00392156885937
+  }
+  data_param {
+    source: "/home/tna6/caffe/examples/mnist/mnist_train_lmdb"
+    batch_size: 64
+    backend: LMDB
+  }
+}
+layer {
+  name: "dataround"
+  type: "Round"
+  bottom: "data"
+  top: "data"
+  round_param {
+    i_length: 8
+    f_length: 23
+  }
+}
+layer {
+  name: "conv1"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv1"
+  param {
+    i_length: 0
+    f_length: 31
+  }
+  param {
+    i_length: 0
+    f_length: 31
+  }
+  convolution_param {
+    num_output: 20
+    kernel_size: 5
+    weight_filler {
+      type: "xavier"
+    }
+  }
+}
+layer {
+  name: "conv1round"
+  type: "Round"
+  bottom: "conv1"
+  top: "conv1"
+  round_param {
+    i_length: 8
+    f_length: 23
+  }
+}
+layer {
+  name: "pool1"
+  type: "Pooling"
+  bottom: "conv1"
+  top: "pool1"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "conv2"
+  type: "Convolution"
+  bottom: "pool1"
+  top: "conv2"
+  param {
+    i_length: 0
+    f_length: 31
+  }
+  param {
+    i_length: 0
+    f_length: 31
+  }
+  convolution_param {
+    num_output: 50
+    kernel_size: 5
+    weight_filler {
+      type: "xavier"
+    }
+  }
+}
+layer {
+  name: "conv2round"
+  type: "Round"
+  bottom: "conv2"
+  top: "conv2"
+  round_param {
+    i_length: 8
+    f_length: 23
+  }
+}
+layer {
+  name: "pool2"
+  type: "Pooling"
+  bottom: "conv2"
+  top: "pool2"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "ip1"
+  type: "InnerProduct"
+  bottom: "pool2"
+  top: "ip1"
+  param {
+    i_length: 0
+    f_length: 31
+  }
+  param {
+    i_length: 0
+    f_length: 31
+  }
+  inner_product_param {
+    num_output: 500
+    weight_filler {
+      type: "xavier"
+    }
+  }
+}
+layer {
+  name: "ip1round"
+  type: "Round"
+  bottom: "ip1"
+  top: "ip1"
+  round_param {
+    i_length: 8
+    f_length: 23
+  }
+}
+layer {
+  name: "relu1"
+  type: "ReLU"
+  bottom: "ip1"
+  top: "ip1"
+}
+layer {
+  name: "ip2"
+  type: "InnerProduct"
+  bottom: "ip1"
+  top: "ip2"
+  param {
+    i_length: 0
+    f_length: 31
+  }
+  param {
+    i_length: 0
+    f_length: 31
+  }
+  inner_product_param {
+    num_output: 10
+    weight_filler {
+      type: "xavier"
+    }
+  }
+}
+layer {
+  name: "loss"
+  type: "SoftmaxWithLoss"
+  bottom: "ip2"
+  bottom: "label"
+  top: "loss"
+}
